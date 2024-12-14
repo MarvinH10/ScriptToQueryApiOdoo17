@@ -28,10 +28,10 @@ async function autenticarEnOdoo() {
             [ODOO_BD, ODOO_USERNAME, ODOO_PASSWORD, {}],
             (error, uid) => {
                 if (error) {
-                    console.error('Error al autenticar en Odoo:', error);
+                    // console.error('Error al autenticar en Odoo:', error);
                     reject(error);
                 } else {
-                    console.log('Autenticación exitosa en Odoo. UID:', uid);
+                    // console.log('Autenticación exitosa en Odoo. UID:', uid);
                     resolve(uid);
                 }
             }
@@ -39,11 +39,11 @@ async function autenticarEnOdoo() {
     });
 }
 
-async function fetchDatosOdoo(uid, model, method, domain = [], fields = []) {
+async function fetchDatosOdoo(uid, model, domain, fields) {
     return new Promise((resolve, reject) => {
         object.methodCall(
             'execute_kw',
-            [ODOO_BD, uid, ODOO_PASSWORD, model, method, [domain], { fields }],
+            [ODOO_BD, uid, ODOO_PASSWORD, model, 'search_read', [domain], { fields }],
             (error, result) => {
                 if (error) {
                     console.error(`Error al consultar el modelo ${model}:`, error);
@@ -64,19 +64,48 @@ async function fetchDatosOdoo(uid, model, method, domain = [], fields = []) {
             console.error('No se pudo autenticar en Odoo.');
             return;
         }
-
-        const productos = await fetchDatosOdoo(uid, 'product.template', 'search_read', [], [
+        const campos = [
             'id',
-            'name',
-            'barcode',
-            'list_price',
-        ]);
-
-        console.log('Productos obtenidos:', productos);
+            'sequence_prefix',
+            'sequence_number',
+            'invoice_date',
+            'create_date',
+            'invoice_date_due',
+            'l10n_pe_edi_operation_type',
+            'currency_id',
+            'partner_id',
+            'amount_untaxed',
+            'amount_tax',
+            'amount_total',
+        ];
+        const dominio = [];
+        await fetchDatosOdoo(uid, 'account.move', dominio, campos);
+        // console.log('Registros obtenidos:', JSON.stringify(registros, null, 2));
     } catch (error) {
         console.error('Error durante la ejecución:', error);
     }
 })();
+
+// (async () => {
+//     try {
+//         const uid = await autenticarEnOdoo();
+//         if (!uid) {
+//             console.error('No se pudo autenticar en Odoo.');
+//             return;
+//         }
+//         const campos = [
+//             'id',
+//             'name',
+//             'barcode',
+//             'list_price',
+//         ];
+//         const dominio = [];
+//         await fetchDatosOdoo(uid, 'product.template', dominio, campos);
+//         // console.log('Productos obtenidos:', productos);
+//     } catch (error) {
+//         console.error('Error durante la ejecución:', error);
+//     }
+// })();
 
 // async function processData() {
 //     try {
