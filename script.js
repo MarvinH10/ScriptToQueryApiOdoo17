@@ -1,4 +1,5 @@
 const xmlrpc = require('xmlrpc');
+const { Client } = require('pg');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -73,7 +74,6 @@ async function fetchDatosOdoo(uid, model, domain, fields) {
             'invoice_date_due',
             'l10n_pe_edi_operation_type',
             'currency_id',
-            'partner_id',
             'amount_untaxed',
             'amount_tax',
             'amount_total',
@@ -86,71 +86,109 @@ async function fetchDatosOdoo(uid, model, domain, fields) {
     }
 })();
 
-// (async () => {
-//     try {
-//         const uid = await autenticarEnOdoo();
-//         if (!uid) {
-//             console.error('No se pudo autenticar en Odoo.');
-//             return;
-//         }
-//         const campos = [
-//             'id',
-//             'name',
-//             'barcode',
-//             'list_price',
-//         ];
-//         const dominio = [];
-//         await fetchDatosOdoo(uid, 'product.template', dominio, campos);
-//         // console.log('Productos obtenidos:', productos);
-//     } catch (error) {
-//         console.error('Error durante la ejecución:', error);
-//     }
-// })();
+async function processData() {
+    try {
+        const uid = await autenticarEnOdoo();
+        if (!uid) {
+            console.error('No se pudo autenticar en Odoo.');
+            return;
+        }
 
-// async function processData() {
-//     try {
-//         await autenticarEnOdoo17();
+        const campos = [
+            'id',
+            'sequence_prefix',
+            'sequence_number',
+            'invoice_date',
+            'create_date',
+            'invoice_date_due',
+            'l10n_pe_edi_operation_type',
+            'currency_id',
+            'amount_untaxed',
+            'amount_tax',
+            'amount_total',
+        ];
 
-//         const productos = await fecthDatosOdoo17('/product.product', { limit: 100 }); // POR AHORA PONDREMOS DE LIMITE 100 PROCESOS DE DATOS
+        const dominio = [];
 
-//         console.log('Datos obtenidos de Odoo 17:', productos);
+        const datos = await fetchDatosOdoo(uid, 'account.move', dominio, campos);
+        console.log('Datos obtenidos de Odoo:', datos);
 
-//         // DATOS DEL POSTGRESS SQL
-//         const client = new Client({
-//             user: process.env.PG_USER,
-//             host: process.env.PG_HOST,
-//             database: process.env.PG_DATABASE,
-//             password: process.env.PG_PASSWORD,
-//             port: Number(process.env.PG_PORT),
-//         });
+        const client = new Client({
+            user: process.env.PG_USER,
+            host: process.env.PG_HOST,
+            database: process.env.PG_DATABASE,
+            password: process.env.PG_PASSWORD,
+            port: Number(process.env.PG_PORT),
+        });
 
-//         await client.connect();
-//         console.log('Conectado a PostgreSQL');
+        await client.connect();
+        console.log('Conectado a PostgreSQL');
 
-//         for (const producto of productos) {
-//             const query = `
-//                 INSERT INTO productos (id, name, barcode, price)
-//                 VALUES ($1, $2, $3, $4)
-//                 ON CONFLICT (id) DO UPDATE SET
-//                 name = EXCLUDED.name,
-//                 barcode = EXCLUDED.barcode,
-//                 price = EXCLUDED.price;`;
+        for (const dato of datos) {
+            const query = `
+                INSERT INTO account_moves (
+                    id,
+                    sequence_prefix,
+                    sequence_number,
+                    invoice_date,
+                    create_date,
+                    invoice_date_due,
+                    operation_type,
+                    currency_id,
+                    amount_untaxed,
+                    amount_tax,
+                    amount_total
+                )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+                ON CONFLICT (id) DO UPDATE SET
+                    sequence_prefix = EXCLUDED.sequence_prefix,
+                    sequence_number = EXCLUDED.sequence_number,
+                    invoice_date = EXCLUDED.invoice_date,
+                    create_date = EXCLUDED.create_date,
+                    invoice_date_due = EXCLUDED.invoice_date_due,
+                    operation_type = EXCLUDED.operation_type,
+                    currency_id = EXCLUDED.currency_id,
+                    amount_untaxed = EXCLUDED.amount_untaxed,
+                    amount_tax = EXCLUDED.amount_tax,
+                    amount_total = EXCLUDED.amount_total;
+            `;
 
-//             const values = [
-//                 producto.id,
-//                 producto.name,
-//                 producto.barcode,
-//                 producto.price,
-//             ];
+            const values = [
+                dato.id,
+                dato.sequence_prefix,
+                dato.sequence_number,
+                dato.invoice_date ? dato.invoice_date : null,
+                dato.create_date ? dato.create_date : null,
+                dato.invoice_date_due ? dato.invoice_date_due : null,
+                dato.l10n_pe_edi_operation_type,
+                dato.currency_id[0],
+                dato.amount_untaxed,
+                dato.amount_tax,
+                dato.amount_total,
+            ];
 
-//             await client.query(query, values);
-//         }
+            await client.query(query, values);
+        }
 
-//         console.log('Datos insertados/actualizados en la base de datos');
-//         await client.end();
-//     } catch (error) {
-//         console.error('Error procesando datos:', error);
-//     }
-// }
+        console.log('Datos insertados/actualizados en la base de datos');
+        await client.end();
+    } catch (error) {
+        console.error('Error procesando datos:', error);
+    }
+}
 
-// processData();
+processData();
+
+async function main() {
+    try {
+        console.log("Inicio de ejecución del script...");
+        await processData();
+        console.log("Ejecución completada. Esperando 24 horas para la próxima ejecución...");
+    } catch (error) {
+        console.error("Error en el script:", error);
+    }
+}
+
+setInterval(main, 24 * 60 * 60 * 1000);
+
+main();
