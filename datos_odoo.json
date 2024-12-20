@@ -1,0 +1,605 @@
+{
+  "account_moves": [
+    {
+      "id": 21,
+      "name": "POSS/2024/12/0002",
+      "sequence_prefix": "POSS/2024/12/",
+      "sequence_number": 2,
+      "invoice_date": false,
+      "create_date": "2024-12-19 21:18:23",
+      "invoice_date_due": "2024-12-19",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 177,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Pago de la factura de PD01/0006 (B BF0-00000001) conEfectivo Huánuco",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 18,
+      "name": "POSS/2024/12/0001",
+      "sequence_prefix": "POSS/2024/12/",
+      "sequence_number": 1,
+      "invoice_date": false,
+      "create_date": "2024-12-19 20:38:31",
+      "invoice_date_due": "2024-12-19",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 200.6,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "POS/00003",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 19,
+      "name": "CSH2/2024/00003",
+      "sequence_prefix": "CSH2/2024/",
+      "sequence_number": 3,
+      "invoice_date": false,
+      "create_date": "2024-12-19 20:38:31",
+      "invoice_date_due": "2024-12-19",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 200.6,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": false,
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 20,
+      "name": "B BF0-00000001",
+      "sequence_prefix": "B BF0-",
+      "sequence_number": 1,
+      "invoice_date": "2024-12-19",
+      "create_date": "2024-12-19 21:18:23",
+      "invoice_date_due": "2024-12-19",
+      "l10n_pe_edi_operation_type": "0101",
+      "partner_id": [
+        7,
+        "Consumidor Final"
+      ],
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 150,
+      "amount_tax": 27,
+      "amount_total": 177,
+      "edi_state": "to_send",
+      "reversed_entry_id": false,
+      "ref": "PD01/0006",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 23,
+      "name": "/",
+      "sequence_prefix": "",
+      "sequence_number": 0,
+      "invoice_date": false,
+      "create_date": "2024-12-19 22:13:55",
+      "invoice_date_due": "2024-12-19",
+      "l10n_pe_edi_operation_type": "0101",
+      "partner_id": [
+        7,
+        "Consumidor Final"
+      ],
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 0,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": false,
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 22,
+      "name": "/",
+      "sequence_prefix": "",
+      "sequence_number": 0,
+      "invoice_date": false,
+      "create_date": "2024-12-19 22:11:25",
+      "invoice_date_due": "2024-12-19",
+      "l10n_pe_edi_operation_type": "0101",
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 0,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": false,
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 12,
+      "name": "POSS/2024/10/0005",
+      "sequence_prefix": "POSS/2024/10/",
+      "sequence_number": 5,
+      "invoice_date": false,
+      "create_date": "2024-10-26 01:31:11",
+      "invoice_date_due": "2024-10-25",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 3,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "POS/00002",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 11,
+      "name": "POSS/2024/10/0004",
+      "sequence_prefix": "POSS/2024/10/",
+      "sequence_number": 4,
+      "invoice_date": false,
+      "create_date": "2024-10-26 01:30:44",
+      "invoice_date_due": "2024-10-25",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 1,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Pago de la factura de PD01/0004 (B BF0-00000003) conEfectivo Huánuco",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 13,
+      "name": "CSH2/2024/00002",
+      "sequence_prefix": "CSH2/2024/",
+      "sequence_number": 2,
+      "invoice_date": false,
+      "create_date": "2024-10-26 01:31:11",
+      "invoice_date_due": "2024-10-25",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 3,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": false,
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 9,
+      "name": "POSS/2024/10/0003",
+      "sequence_prefix": "POSS/2024/10/",
+      "sequence_number": 3,
+      "invoice_date": false,
+      "create_date": "2024-10-22 20:58:34",
+      "invoice_date_due": "2024-10-22",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 1,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Pago de la factura de PD01/0003 (B BF0-00000002) conEfectivo Huánuco",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 6,
+      "name": "POSS/2024/10/0002",
+      "sequence_prefix": "POSS/2024/10/",
+      "sequence_number": 2,
+      "invoice_date": false,
+      "create_date": "2024-10-19 01:32:21",
+      "invoice_date_due": "2024-10-18",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 1,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "POS/00001",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 5,
+      "name": "POSS/2024/10/0001",
+      "sequence_prefix": "POSS/2024/10/",
+      "sequence_number": 1,
+      "invoice_date": false,
+      "create_date": "2024-10-19 01:12:11",
+      "invoice_date_due": "2024-10-18",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 1,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Pago de la factura de PD01/0001 (B BF0-00000001) conEfectivo Huánuco",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 7,
+      "name": "CSH2/2024/00001",
+      "sequence_prefix": "CSH2/2024/",
+      "sequence_number": 1,
+      "invoice_date": false,
+      "create_date": "2024-10-19 01:32:21",
+      "invoice_date_due": "2024-10-18",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 1,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": false,
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 3,
+      "name": "/",
+      "sequence_prefix": "",
+      "sequence_number": 0,
+      "invoice_date": false,
+      "create_date": "2024-09-24 19:14:10",
+      "invoice_date_due": "2024-09-24",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 0,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Tax return: septiembre 2024",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 2,
+      "name": "/",
+      "sequence_prefix": "",
+      "sequence_number": 0,
+      "invoice_date": false,
+      "create_date": "2024-09-12 04:48:26",
+      "invoice_date_due": "2024-09-12",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 0,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Tax return: septiembre 2024",
+      "l10n_pe_edi_refund_reason": false
+    },
+    {
+      "id": 1,
+      "name": "/",
+      "sequence_prefix": "",
+      "sequence_number": 0,
+      "invoice_date": false,
+      "create_date": "2024-09-12 04:35:35",
+      "invoice_date_due": "2024-09-12",
+      "l10n_pe_edi_operation_type": false,
+      "partner_id": false,
+      "currency_id": [
+        156,
+        "PEN"
+      ],
+      "amount_untaxed": 0,
+      "amount_tax": 0,
+      "amount_total": 0,
+      "edi_state": false,
+      "reversed_entry_id": false,
+      "ref": "Tax return: September 2024",
+      "l10n_pe_edi_refund_reason": false
+    }
+  ],
+  "partners": [
+    {
+      "id": 7,
+      "name": "Consumidor Final",
+      "vat": "00000000",
+      "street": false,
+      "street2": false,
+      "city": false,
+      "state_id": false,
+      "country_id": false,
+      "zip": false,
+      "email": false,
+      "phone": false,
+      "mobile": false,
+      "website": false,
+      "ref": false
+    },
+    {
+      "id": 10,
+      "name": "Jhamil Crispin",
+      "vat": "10750038285",
+      "street": "Jr. Alameda 123",
+      "street2": false,
+      "city": "Huánuco",
+      "state_id": [
+        1158,
+        "Huánuco (PE)"
+      ],
+      "country_id": [
+        173,
+        "Peru"
+      ],
+      "zip": "10001",
+      "email": "j99crispin@gmail.com",
+      "phone": false,
+      "mobile": false,
+      "website": false,
+      "ref": false
+    },
+    {
+      "id": 1,
+      "name": "Kdosh Store HUANUCO",
+      "vat": "20542409534",
+      "street": "Jr. Abtao 1101",
+      "street2": false,
+      "city": "Huánuco",
+      "state_id": [
+        1158,
+        "Huánuco (PE)"
+      ],
+      "country_id": [
+        173,
+        "Peru"
+      ],
+      "zip": "10001",
+      "email": "marvinhectorcamposdeza@gmail.com",
+      "phone": "",
+      "mobile": "+51 989623418",
+      "website": false,
+      "ref": false
+    },
+    {
+      "id": 9,
+      "name": "Kdosh Store SAN MARTIN",
+      "vat": "20542409534",
+      "street": "Jr. San Martín 965",
+      "street2": false,
+      "city": "Huánuco",
+      "state_id": [
+        1158,
+        "Huánuco (PE)"
+      ],
+      "country_id": [
+        173,
+        "Peru"
+      ],
+      "zip": "10001",
+      "email": false,
+      "phone": false,
+      "mobile": false,
+      "website": false,
+      "ref": false
+    },
+    {
+      "id": 8,
+      "name": "Kdosh Store TINGO MARIA",
+      "vat": "20542409534",
+      "street": "Av. Tito Jaime Fernandez 608",
+      "street2": false,
+      "city": "Leoncio Prado",
+      "state_id": [
+        1158,
+        "Huánuco (PE)"
+      ],
+      "country_id": [
+        173,
+        "Peru"
+      ],
+      "zip": "10131",
+      "email": false,
+      "phone": false,
+      "mobile": "+51 989623418",
+      "website": false,
+      "ref": false
+    },
+    {
+      "id": 3,
+      "name": "KdoshStore",
+      "vat": false,
+      "street": false,
+      "street2": false,
+      "city": false,
+      "state_id": false,
+      "country_id": false,
+      "zip": false,
+      "email": "marvinhectorcamposdeza@gmail.com",
+      "phone": false,
+      "mobile": false,
+      "website": false,
+      "ref": false
+    }
+  ],
+  "account_move_lines": [
+    {
+      "id": 41,
+      "product_id": false
+    },
+    {
+      "id": 42,
+      "product_id": false
+    },
+    {
+      "id": 32,
+      "product_id": false
+    },
+    {
+      "id": 33,
+      "product_id": false
+    },
+    {
+      "id": 34,
+      "product_id": false
+    },
+    {
+      "id": 37,
+      "product_id": false
+    },
+    {
+      "id": 35,
+      "product_id": false
+    },
+    {
+      "id": 36,
+      "product_id": false
+    },
+    {
+      "id": 38,
+      "product_id": [
+        33,
+        "[2604 | 6] Zapatillas ADIDAS (6)"
+      ]
+    },
+    {
+      "id": 39,
+      "product_id": false
+    },
+    {
+      "id": 40,
+      "product_id": false
+    },
+    {
+      "id": 43,
+      "product_id": false
+    },
+    {
+      "id": 44,
+      "product_id": false
+    },
+    {
+      "id": 17,
+      "product_id": false
+    },
+    {
+      "id": 18,
+      "product_id": false
+    },
+    {
+      "id": 21,
+      "product_id": false
+    },
+    {
+      "id": 22,
+      "product_id": false
+    },
+    {
+      "id": 15,
+      "product_id": false
+    },
+    {
+      "id": 16,
+      "product_id": false
+    },
+    {
+      "id": 19,
+      "product_id": false
+    },
+    {
+      "id": 20,
+      "product_id": false
+    },
+    {
+      "id": 11,
+      "product_id": false
+    },
+    {
+      "id": 12,
+      "product_id": false
+    },
+    {
+      "id": 7,
+      "product_id": false
+    },
+    {
+      "id": 8,
+      "product_id": false
+    },
+    {
+      "id": 3,
+      "product_id": false
+    },
+    {
+      "id": 4,
+      "product_id": false
+    },
+    {
+      "id": 5,
+      "product_id": false
+    },
+    {
+      "id": 6,
+      "product_id": false
+    }
+  ]
+}
