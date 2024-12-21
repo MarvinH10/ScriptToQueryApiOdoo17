@@ -24,21 +24,26 @@ const object = xmlrpc.createClient({
 });
 
 async function autenticarEnOdoo() {
-    return new Promise((resolve, reject) => {
-        common.methodCall(
-            'authenticate',
-            [ODOO_BD, ODOO_USERNAME, ODOO_PASSWORD, {}],
-            (error, uid) => {
-                if (error) {
-                    // console.error('Error al autenticar en Odoo:', error);
-                    reject(error);
-                } else {
-                    // console.log('Autenticación exitosa en Odoo. UID:', uid);
-                    resolve(uid);
+    try {
+        const uid = await new Promise((resolve, reject) => {
+            common.methodCall(
+                'authenticate',
+                [ODOO_BD, ODOO_USERNAME, ODOO_PASSWORD, {}],
+                (error, uid) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(uid);
+                    }
                 }
-            }
-        );
-    });
+            );
+        });
+        // console.log('Autenticación exitosa en Odoo. UID:', uid);
+        return uid;
+    } catch (error) {
+        console.error('Error al autenticar en Odoo:', error);
+        throw error;
+    }
 }
 
 async function fetchDatosOdoo(uid, model, domain, fields) {
@@ -59,6 +64,23 @@ async function fetchDatosOdoo(uid, model, domain, fields) {
     });
 }
 
+async function obtenerDatos(uid) {
+    const modelos = [
+        { nombre: 'account.move', campos: ['id', 'name', 'sequence_prefix', 'sequence_number', 'invoice_date', 'create_date', 'invoice_date_due', 'l10n_pe_edi_operation_type', 'partner_id', 'currency_id', 'amount_untaxed', 'amount_tax', 'amount_total', 'edi_state', 'reversed_entry_id', 'ref', 'l10n_pe_edi_refund_reason'] },
+        { nombre: 'res.partner', campos: ['id', 'name', 'vat', 'street', 'street2', 'city', 'state_id', 'country_id', 'zip', 'email', 'phone', 'mobile', 'website', 'ref'] },
+        { nombre: 'account.move.line', campos: ['product_id'] }
+    ];
+
+    const dominio = [];
+    const datos = {};
+
+    for (const modelo of modelos) {
+        datos[modelo.nombre] = await fetchDatosOdoo(uid, modelo.nombre, dominio, modelo.campos);
+    }
+
+    return datos;
+}
+
 (async () => {
     try {
         const uid = await autenticarEnOdoo();
@@ -66,58 +88,12 @@ async function fetchDatosOdoo(uid, model, domain, fields) {
             console.error('No se pudo autenticar en Odoo.');
             return;
         }
-        const camposAccountMove = [
-            'id',
-            'name',
-            'sequence_prefix',
-            'sequence_number',
-            'invoice_date',
-            'create_date',
-            'invoice_date_due',
-            'l10n_pe_edi_operation_type',
-            'partner_id',
-            'currency_id',
-            'amount_untaxed',
-            'amount_tax',
-            'amount_total',
-            'edi_state',
-            'reversed_entry_id',
-            'ref',
-            'l10n_pe_edi_refund_reason',
-        ];
-        const camposCliente = [
-            'id',
-            'name',
-            'vat',
-            'street',
-            'street2',
-            'city',
-            'state_id',
-            'country_id',
-            'zip',
-            'email',
-            'phone',
-            'mobile',
-            'website',
-            'ref',
-        ]
-        const camposAccountMoveLine = [
-            'product_id',
-        ]
-        const dominio = [];
-        const datosAccountMove  = await fetchDatosOdoo(uid, 'account.move', dominio, camposAccountMove);
-        const datosCliente = await fetchDatosOdoo(uid, 'res.partner', dominio, camposCliente);
-        const datosAccountMoveLine = await fetchDatosOdoo(uid, 'account.move.line', dominio, camposAccountMoveLine);
 
-        const datosCombinados = {
-            account_moves: datosAccountMove,
-            partners: datosCliente,
-            account_move_lines: datosAccountMoveLine,
-        };
+        const datosCombinados = await obtenerDatos(uid);
 
-        const outputFile = 'datos_odoo.json';
-        fs.writeFileSync(outputFile, JSON.stringify(datosCombinados, null, 2), 'utf8');
-        // console.log('Registros obtenidos:', JSON.stringify(registros, null, 2));
+        // const outputFile = 'datos_odoo.json';
+        // fs.writeFileSync(outputFile, JSON.stringify(datosCombinados, null, 2), 'utf8');
+        // console.log('Datos guardados en', outputFile);
     } catch (error) {
         console.error('Error durante la ejecución:', error);
     }

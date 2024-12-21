@@ -1,5 +1,5 @@
 {
-  "account_moves": [
+  "account.move": [
     {
       "id": 21,
       "name": "POSS/2024/12/0002",
@@ -359,7 +359,7 @@
       "l10n_pe_edi_refund_reason": false
     }
   ],
-  "partners": [
+  "res.partner": [
     {
       "id": 7,
       "name": "Consumidor Final",
@@ -481,7 +481,7 @@
       "ref": false
     }
   ],
-  "account_move_lines": [
+  "account.move.line": [
     {
       "id": 41,
       "product_id": false
